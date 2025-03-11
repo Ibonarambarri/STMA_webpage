@@ -141,7 +141,7 @@ def ver_proyectos():
 def detalle_proyecto(proyecto_id):
     proyecto = next((p for p in proyectos if p['id'] == proyecto_id), None)
     if proyecto:
-        return render_template('detalle_proyecto.html', empresa=empresa_info, proyecto=proyecto)
+        return render_template('detalle_proyecto.html', empresa=empresa_info, proyecto=proyecto, proyectos=proyectos)
     return redirect(url_for('ver_proyectos'))
 
 
