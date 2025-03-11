@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "main.py",
+      "src": "vercel_app.py",
       "use": "@vercel/python"
     }
   ],
@@ -13,10 +13,10 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/main.py"
+      "dest": "/vercel_app.py"
     }
   ],
   "env": {
-    "APP_MODULE": "main:app"
+    "PYTHONUNBUFFERED": "1"
   }
 }
