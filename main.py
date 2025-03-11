@@ -2,18 +2,28 @@ from fastapi import FastAPI, Request, Form, HTTPException, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.middleware.sessions import SessionMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, List, Dict, Any
 import os
 import datetime
 from pydantic import BaseModel, EmailStr
 from dotenv import load_dotenv
 import httpx
+from starlette.middleware.sessions import SessionMiddleware
 
 # Cargar variables de entorno
 load_dotenv()
 
 app = FastAPI(title="STMA Intelligent Solutions")
+
+# Middleware CORS para Vercel
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Configuración de archivos estáticos y plantillas
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -22,7 +32,8 @@ templates = Jinja2Templates(directory="templates")
 # Clave secreta para la sesión
 app.add_middleware(
     SessionMiddleware,
-    secret_key=os.environ.get('SECRET_KEY', 'clave-secreta-por-defecto')
+    secret_key=os.environ.get('SECRET_KEY', 'clave-secreta-por-defecto'),
+    max_age=3600  # 1 hora
 )
 
 # Configuración para envío de correos
@@ -301,9 +312,8 @@ async def pagina_no_encontrada(request: Request, exc):
         status_code=404
     )
 
-
-# Para ejecutar con uvicorn en desarrollo
+# Para permitir que Vercel importe el app correctamente
+# No necesitamos esto para producción pero lo mantenemos por compatibilidad
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
