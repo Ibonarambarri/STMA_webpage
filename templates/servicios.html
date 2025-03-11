@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Servicios - {{ empresa.nombre }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="fw-bold">Nuestros Servicios</h1>
+                <p class="lead">Soluciones tecnológicas adaptadas a las necesidades específicas de tu negocio.</p>
+                <p>En {{ empresa.nombre }} ofrecemos una amplia gama de servicios de consultoría informática para ayudar a tu empresa a optimizar procesos, mejorar la seguridad y aprovechar al máximo las oportunidades que ofrece la tecnología.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='img/servicios.jpg') }}" alt="Nuestros Servicios" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Servicios Principales -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Servicios Principales</h2>
+            <p class="lead">Diseñados para impulsar tu negocio</p>
+        </div>
+        <div class="row g-4">
+            {% for servicio in empresa.servicios %}
+            <div class="col-md-6">
+                <div class="service-box">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-{{ ['cogs', 'code', 'shield-alt', 'rocket'][loop.index0] }} text-primary"></i>
+                        </div>
+                        <h3>{{ servicio.titulo }}</h3>
+                    </div>
+                    <p>{{ servicio.descripcion }}</p>
+                    <ul class="list-unstyled">
+                        {% if loop.index0 == 0 %}
+                            <li><i class="fas fa-check text-success me-2"></i> Auditoría de infraestructura IT</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Planificación estratégica tecnológica</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Optimización de recursos informáticos</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Gestión de proveedores tecnológicos</li>
+                        {% elif loop.index0 == 1 %}
+                            <li><i class="fas fa-check text-success me-2"></i> Desarrollo de aplicaciones web</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Desarrollo de aplicaciones móviles</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Integración de sistemas</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Mantenimiento y soporte</li>
+                        {% elif loop.index0 == 2 %}
+                            <li><i class="fas fa-check text-success me-2"></i> Auditorías de seguridad</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Implementación de soluciones de protección</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Planes de contingencia y recuperación</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Formación en seguridad informática</li>
+                        {% elif loop.index0 == 3 %}
+                            <li><i class="fas fa-check text-success me-2"></i> Análisis de procesos empresariales</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Implementación de soluciones cloud</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Automatización de procesos</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Estrategias de datos e inteligencia empresarial</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Servicios Adicionales -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Servicios Adicionales</h2>
+            <p class="lead">Complementa tu estrategia tecnológica</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <h4>Formación y Capacitación</h4>
+                        <p>Programas de formación personalizados para tu equipo en diversas tecnologías y herramientas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-headset fa-3x text-primary"></i>
+                        </div>
+                        <h4>Soporte Técnico</h4>
+                        <p>Servicio de asistencia técnica continua para resolver incidencias y mantener tu infraestructura funcionando óptimamente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-cloud fa-3x text-primary"></i>
+                        </div>
+                        <h4>Servicios en la Nube</h4>
+                        <p>Asesoramiento, migración y gestión de infraestructuras y aplicaciones en entornos cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Metodología -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Nuestra Metodología</h2>
+            <p class="lead">Cómo trabajamos para garantizar el éxito de tu proyecto</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-search fa-3x text-primary"></i>
+                    </div>
+                </div>
+                <h4>1. Análisis</h4>
+                <p>Estudiamos tu empresa, tus necesidades y objetivos para entender completamente el contexto.</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-pencil-alt fa-3x text-primary"></i>
+                    </div>
+                </div>
+                <h4>2. Diseño</h4>
+                <p>Creamos una solución personalizada que se adapte perfectamente a tus requerimientos.</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-cogs fa-3x text-primary"></i>
+                    </div>
+                </div>
+                <h4>3. Implementación</h4>
+                <p>Ponemos en marcha la solución de manera eficiente y con el mínimo impacto en tu operativa.</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-chart-line fa-3x text-primary"></i>
+                    </div>
+                </div>
+                <h4>4. Seguimiento</h4>
+                <p>Monitorizamos y evaluamos constantemente para asegurar que todo funciona según lo previsto.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonios -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Lo que dicen nuestros clientes</h2>
+            <p class="lead">Testimonios de quienes han confiado en nuestros servicios</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="testimonial-item text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-quote-left fa-3x text-primary"></i>
+                                </div>
+                                <p class="lead mb-4">"STMA transformó completamente nuestra infraestructura IT. Ahora trabajamos de manera más eficiente y segura. Su equipo demostró un gran profesionalismo y conocimiento técnico."</p>
+                                <h5>María Rodríguez</h5>
+                                <p>Directora de Operaciones, Empresa de Logística</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="testimonial-item text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-quote-left fa-3x text-primary"></i>
+                                </div>
+                                <p class="lead mb-4">"La aplicación que desarrollaron para nuestra clínica ha mejorado significativamente la experiencia de nuestros pacientes. El proceso fue impecable desde el análisis hasta la implementación."</p>
+                                <h5>Dr. Juan Martínez</h5>
+                                <p>Director Médico, Clínica Salud</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="testimonial-item text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-quote-left fa-3x text-primary"></i>
+                                </div>
+                                <p class="lead mb-4">"La migración a la nube que STMA gestionó para nosotros nos ha permitido reducir costes y aumentar nuestra agilidad empresarial. Su asesoramiento fue fundamental para tomar las decisiones correctas."</p>
+                                <h5>Carlos Gómez</h5>
+                                <p>CIO, Retail Multitiendas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold">¿Interesado en nuestros servicios?</h2>
+        <p class="lead mb-4">Contáctanos hoy mismo para una consulta gratuita y sin compromiso</p>
+        <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg">Solicitar información</a>
+    </div>
+</section>
+{% endblock %}

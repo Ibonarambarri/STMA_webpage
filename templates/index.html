@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}{{ empresa.nombre }} - Consultoría Informática{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">{{ empresa.nombre }}</h1>
+                <p class="lead">{{ empresa.descripcion }}</p>
+                <p>{{ empresa.mision }}</p>
+                <div class="mt-4">
+                    <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg me-2">Contáctanos</a>
+                    <a href="{{ url_for('servicios') }}" class="btn btn-outline-light btn-lg">Nuestros Servicios</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='img/hero-image.png') }}" alt="Consultoría Informática" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Servicios -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Nuestros Servicios</h2>
+            <p class="lead">Soluciones tecnológicas adaptadas a tus necesidades</p>
+        </div>
+        <div class="row g-4">
+            {% for servicio in empresa.servicios %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-{{ ['cogs', 'code', 'shield-alt', 'rocket'][loop.index0] }} fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title">{{ servicio.titulo }}</h4>
+                        <p class="card-text">{{ servicio.descripcion }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('servicios') }}" class="btn btn-primary">Ver todos los servicios</a>
+        </div>
+    </div>
+</section>
+
+<!-- Proyectos Destacados -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Proyectos Destacados</h2>
+            <p class="lead">Descubre cómo hemos ayudado a otras empresas</p>
+        </div>
+        <div class="row g-4">
+            {% for proyecto in proyectos %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='img/' + proyecto.imagen) }}" class="card-img-top" alt="{{ proyecto.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ proyecto.titulo }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ proyecto.cliente }}</h6>
+                        <p class="card-text">{{ proyecto.descripcion|truncate(100) }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ url_for('detalle_proyecto', proyecto_id=proyecto.id) }}" class="btn btn-sm btn-outline-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('ver_proyectos') }}" class="btn btn-primary">Ver todos los proyectos</a>
+        </div>
+    </div>
+</section>
+
+<!-- Por qué elegirnos -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">¿Por qué elegirnos?</h2>
+            <p class="lead">Razones para confiar en STMA como tu socio tecnológico</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-award fa-3x text-primary"></i>
+                </div>
+                <h4>Experiencia</h4>
+                <p>Más de 10 años de experiencia combinada en el sector tecnológico</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-users fa-3x text-primary"></i>
+                </div>
+                <h4>Equipo cualificado</h4>
+                <p>Consultores expertos con certificaciones y formación continua</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-project-diagram fa-3x text-primary"></i>
+                </div>
+                <h4>Soluciones a medida</h4>
+                <p>Adaptamos nuestros servicios a las necesidades específicas de tu negocio</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-headset fa-3x text-primary"></i>
+                </div>
+                <h4>Soporte constante</h4>
+                <p>Acompañamiento en todo el proceso y mantenimiento posterior</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold">¿Listo para transformar tu negocio?</h2>
+        <p class="lead mb-4">Contáctanos hoy mismo para una consulta sin compromiso</p>
+        <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg">Solicitar información</a>
+    </div>
+</section>
+{% endblock %}

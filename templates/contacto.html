@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto - {{ empresa.nombre }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h1 class="fw-bold">Contacto</h1>
+                    <p class="lead">Estamos aquí para ayudarte. Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+                </div>
+                <div class="card border-0 shadow-lg">
+                    <div class="card-body p-4 p-md-5">
+                        <form method="POST" action="{{ url_for('contacto') }}" id="contactForm" onsubmit="mostrarProgreso()">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label">Nombre completo *</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="empresa" class="form-label">Empresa</label>
+                                    <input type="text" class="form-control" id="empresa" name="empresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono">
+                                </div>
+                                <div class="col-12">
+                                    <label for="asunto" class="form-label">Asunto *</label>
+                                    <input type="text" class="form-control" id="asunto" name="asunto" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="mensaje" class="form-label">Mensaje *</label>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="privacidad" name="privacidad" required>
+                                        <label class="form-check-label" for="privacidad">
+                                            Acepto la política de privacidad y el tratamiento de mis datos personales *
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div id="form-progress" class="progress mb-3" style="display: none;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submit-button">Enviar mensaje</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-map-marker-alt fa-3x text-primary"></i>
+                </div>
+                <h4>Dirección</h4>
+                <p>Calle Tecnología, 123<br>28000 Madrid, España</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-envelope fa-3x text-primary"></i>
+                </div>
+                <h4>Email</h4>
+                <p>info@stma-solutions.com<br>soporte@stma-solutions.com</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="mb-3">
+                    <i class="fas fa-phone fa-3x text-primary"></i>
+                </div>
+                <h4>Teléfono</h4>
+                <p>+34 900 123 456<br>+34 910 987 654</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Horario -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="mb-4">Horario de Atención</h3>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Lunes - Viernes</td>
+                            <td>9:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Sábado</td>
+                            <td>Cerrado</td>
+                        </tr>
+                        <tr>
+                            <td>Domingo</td>
+                            <td>Cerrado</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-muted">Para emergencias técnicas fuera de horario, contamos con un servicio de soporte 24/7 para clientes con contrato de mantenimiento.</p>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="mb-4">Preguntas Frecuentes</h3>
+                <div class="accordion" id="accordionFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                ¿Cuánto tiempo tarda en responder a las consultas?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Respondemos a todas las consultas en un plazo máximo de 24 horas laborables.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                ¿Trabajan con empresas fuera de España?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Sí, ofrecemos servicios a empresas en toda España y también trabajamos con clientes internacionales, especialmente en Europa y Latinoamérica.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                ¿Ofrecen presupuestos sin compromiso?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+                            <div class="accordion-body">
+                                Sí, realizamos consultas iniciales y presupuestos sin ningún compromiso. Contacta con nosotros para analizar tu caso específico.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mapa -->
+<div class="embed-responsive">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12158.94502137302!2d-3.7037974870838285!3d40.41677929760584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287d6da3df9d%3A0x5056e24014d5c4df!2sMadrid%2C%20Spain!5e0!3m2!1sen!2sus!4v1616437192237!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function() {
+        document.getElementById('form-progress').style.display = 'block';
+        document.getElementById('submit-button').disabled = true;
+    });
+</script>
+{% endblock %}

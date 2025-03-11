@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}{{ proyecto.titulo }} - {{ empresa.nombre }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('ver_proyectos') }}">Proyectos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ proyecto.titulo }}</li>
+                    </ol>
+                </nav>
+                
+                <h1 class="fw-bold mb-4">{{ proyecto.titulo }}</h1>
+                
+                <div class="mb-4">
+                    <h5 class="text-muted">Cliente: {{ proyecto.cliente }}</h5>
+                </div>
+                
+                <img src="{{ url_for('static', filename='img/' + proyecto.imagen) }}" alt="{{ proyecto.titulo }}" class="img-fluid rounded mb-4 shadow">
+                
+                <div class="mb-4">
+                    <h3>Descripción del Proyecto</h3>
+                    <p>{{ proyecto.descripcion }}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet felis eget libero consequat tempus. Phasellus consectetur lectus ac justo convallis, vel tempor nisl tincidunt. Donec efficitur, nisi vel finibus tempus, neque elit bibendum purus, vel ultrices nunc enim eget purus. Vivamus fermentum metus id laoreet varius.</p>
+                    <p>Suspendisse potenti. Cras ullamcorper, elit non bibendum scelerisque, nulla nulla efficitur nulla, vel facilisis metus nisl vitae nulla. Fusce aliquet elit id velit tempor, non pellentesque sem viverra. Sed suscipit urna in risus ultrices, vel vestibulum lorem varius.</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h3>Desafíos</h3>
+                    <ul>
+                        <li>Integración con sistemas existentes</li>
+                        <li>Migración de datos sin interrumpir la operativa diaria</li>
+                        <li>Implementación de medidas de seguridad robustas</li>
+                        <li>Capacitación del personal en las nuevas tecnologías</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-4">
+                    <h3>Solución Implementada</h3>
+                    <p>Nuestro equipo desarrolló una solución completa que abordó todos los desafíos presentados por el cliente. Implementamos un sistema modular y escalable que permite adaptarse a las necesidades cambiantes de la empresa.</p>
+                    <p>La arquitectura diseñada facilita la incorporación de nuevas funcionalidades en el futuro, garantizando que la inversión tecnológica mantenga su valor a largo plazo.</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h3>Resultados</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <h2 class="text-primary mb-0">30%</h2>
+                                <p class="mb-0">Aumento en productividad</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <h2 class="text-primary mb-0">25%</h2>
+                                <p class="mb-0">Reducción de costes</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3 bg-light rounded">
+                                <h2 class="text-primary mb-0">95%</h2>
+                                <p class="mb-0">Satisfacción del cliente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Detalles del Proyecto</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-calendar-alt me-2 text-primary"></i> Fecha de inicio</span>
+                                <span class="badge bg-primary rounded-pill">Ene 2023</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-clock me-2 text-primary"></i> Duración</span>
+                                <span class="badge bg-primary rounded-pill">4 meses</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-users me-2 text-primary"></i> Equipo</span>
+                                <span class="badge bg-primary rounded-pill">5 personas</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-check-circle me-2 text-primary"></i> Estado</span>
+                                <span class="badge bg-success rounded-pill">Completado</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Tecnologías Utilizadas</h4>
+                        <div class="mb-3">
+                            {% for tech in proyecto.tecnologias %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">¿Interesado en un proyecto similar?</h4>
+                        <p>Contáctanos para discutir cómo podemos ayudarte a implementar una solución adaptada a tus necesidades.</p>
+                        <a href="{{ url_for('contacto') }}" class="btn btn-primary w-100">Solicitar información</a>
+                    </div>
+                </div>
+                
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Otros Proyectos</h4>
+                        <div class="list-group list-group-flush">
+                            {% for p in proyectos if p.id != proyecto.id %}
+                            <a href="{{ url_for('detalle_proyecto', proyecto_id=p.id) }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ p.titulo }}</h6>
+                                </div>
+                                <small class="text-muted">{{ p.cliente }}</small>
+                            </a>
+                            {% if loop.index >= 3 %}
+                                {% break %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="fw-bold">¿Te gustaría un proyecto como este?</h2>
+        <p class="lead mb-4">Contáctanos y hablemos sobre tus ideas y necesidades</p>
+        <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg">Solicitar presupuesto</a>
+    </div>
+</section>
+{% endblock %}

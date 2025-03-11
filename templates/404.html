@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Página no encontrada - {{ empresa.nombre }}{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container text-center">
+        <div class="error-code">404</div>
+        <h1>Página no encontrada</h1>
+        <p class="lead">Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
+        <div class="mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Volver al inicio</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
